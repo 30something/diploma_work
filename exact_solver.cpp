@@ -1,19 +1,6 @@
-#include <algorithm>
-#include <iostream>
-#include <fstream>
-#include <random>
-#include <vector>
-#include <sys/time.h>
-#include <chrono>
+#include "helper.h"
 
 using namespace std;
-
-enum Strategy {
-  RANDOM_SHUFFLE,
-  PRIORITY_MAX,
-  PRIORITY_MIN,
-  JUMPS,
-};
 
 int elements_amount;
 int working_array[2001];
@@ -24,7 +11,6 @@ int saved_best_distribution[51][2001];
 struct timeval time_begin, time_end;
 bool time_return;
 int sec_to_return = 10;
-mt19937 gen32(chrono::steady_clock::now().time_since_epoch().count());
 vector<int> lower_bounds_list, sols_list;
 
 int get_LB(int m, vector<int> overall) {
@@ -106,68 +92,6 @@ void solve(int cpu_amount, int current_pos, int current_oc) {
 
 }
 
-void generate_test(int amount, int x_coef, int x_plus, Strategy strategy,
-                   const string& test_file) {
-  ofstream ftest(test_file);
-  vector<int> overall;
-
-  for (int i = 1; i <= amount; i++) {
-    int x = gen32() % x_coef + x_plus;
-    overall.push_back(x);
-  }
-
-  if (strategy == RANDOM_SHUFFLE) {
-    shuffle(overall.begin(),
-            overall.end(),
-            std::mt19937(std::random_device()()));
-  } else if (strategy == PRIORITY_MAX) {
-    int swaps = 2 * amount;
-    sort(overall.begin(), overall.end());
-    reverse(overall.begin(), overall.end());
-    while (swaps > 0) {
-      for (int i = 0; i < amount - 1; i++) {
-        if (gen32() % 2 == 0) {
-          swap(overall[i], overall[i + 1]), swaps--;
-          if (swaps == 0) break;
-        }
-      }
-    }
-  } else if (strategy == PRIORITY_MIN) {
-    int swaps = 2 * amount;
-    sort(overall.begin(), overall.end());
-    while (swaps > 0) {
-      for (int i = 0; i < amount - 1; i++) {
-        if (gen32() % 2 == 0) {
-          swap(overall[i], overall[i + 1]), swaps--;
-          if (swaps == 0) break;
-        }
-      }
-    }
-  } else if (strategy == JUMPS) {
-    int border = overall.size() / 2;
-    sort(overall.begin(), overall.end());
-    vector<int> v1, v2;
-    for (int i = 0; i < border; i++) v1.push_back(overall[i]);
-    for (int i = border; i < overall.size(); i++) v2.push_back(overall[i]);
-    shuffle(v1.begin(), v1.end(), std::mt19937(std::random_device()()));
-    shuffle(v2.begin(), v2.end(), std::mt19937(std::random_device()()));
-    for (int i = 0; i < overall.size(); i++) {
-      if (i % 2 == 0) {
-        if (!v1.empty()) overall[i] = v1.back(), v1.pop_back();
-        else overall[i] = v2.back(), v2.pop_back();
-      }
-      else {
-        if (!v2.empty()) overall[i] = v2.back(), v2.pop_back();
-        else overall[i] = v1.back(), v1.pop_back();
-      }
-    }
-  }
-
-  for (auto f : overall) {
-    ftest << f << '\n';
-  }
-}
-
 void solve_test(int cpu_amount, int amount, int solve_sec,
                 const string& info_file, const string& test_file) {
 
@@ -229,26 +153,7 @@ void solve_test(int cpu_amount, int amount, int solve_sec,
 }
 
 int main() {
-  srand(time(nullptr));
-
   vector<int> pr = {3, 6, 10, 15};
-
-//  for (auto cr : pr) {
-//    int number_amount = 1;
-//    string proc_amount = to_string(cr);
-//    for (int elements = 100; elements <= 1000; elements += 100) {
-//      generate_test(elements, elements * elements, 1, RANDOM_SHUFFLE,
-//                    "tests/" + proc_amount + "/random/output" + to_string(number_amount) + ".txt");
-//      generate_test(elements, elements * elements, 1, PRIORITY_MIN,
-//                    "tests/" + proc_amount + "/min/output" + to_string(number_amount) + ".txt");
-//      generate_test(elements, elements * elements, 1, PRIORITY_MAX,
-//                    "tests/" + proc_amount + "/max/output" + to_string(number_amount) + ".txt");
-//      generate_test(elements, elements * elements, 1, JUMPS,
-//                    "tests/" + proc_amount + "/jumps/output" + to_string(number_amount) + ".txt");
-//      number_amount++;
-//    }
-//  }
-
   int solve_sec;
 
   for (auto cr : pr) {

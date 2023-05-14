@@ -3,5 +3,6 @@ project(kurs)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(kurs main.cpp)
-add_executable(kurs_algos main1.cpp)
+add_executable(exact_solve helper.h exact_solver.cpp)
+add_executable(euristic_solve helper.h euristic_solver.cpp)
+add_executable(generate_tests helper.h generate_tests.cpp)
