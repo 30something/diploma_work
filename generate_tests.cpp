@@ -27,10 +27,13 @@ void generate_test(int amount, int x_coef, int x_plus, Strategy strategy,
   }
 
   if (strategy == RANDOM_SHUFFLE) {
+
     shuffle(overall.begin(),
             overall.end(),
             std::mt19937(std::random_device()()));
+
   } else if (strategy == PRIORITY_MAX) {
+
     int swaps = 2 * amount;
     sort(overall.begin(), overall.end());
     reverse(overall.begin(), overall.end());
@@ -42,7 +45,9 @@ void generate_test(int amount, int x_coef, int x_plus, Strategy strategy,
         }
       }
     }
+
   } else if (strategy == PRIORITY_MIN) {
+
     int swaps = 2 * amount;
     sort(overall.begin(), overall.end());
     while (swaps > 0) {
@@ -53,7 +58,9 @@ void generate_test(int amount, int x_coef, int x_plus, Strategy strategy,
         }
       }
     }
+
   } else if (strategy == JUMPS) {
+
     int border = overall.size() / 2;
     sort(overall.begin(), overall.end());
     vector<int> v1, v2;
@@ -71,6 +78,7 @@ void generate_test(int amount, int x_coef, int x_plus, Strategy strategy,
         else overall[i] = v1.back(), v1.pop_back();
       }
     }
+
   }
 
   for (auto f : overall) {
@@ -80,7 +88,8 @@ void generate_test(int amount, int x_coef, int x_plus, Strategy strategy,
 
 int main() {
 
-  vector<int> pr = {3, 6, 10, 15};
+//  vector<int> pr = {30};
+  vector<int> pr = {10, 30, 60, 90};
 
   for (auto cr : pr) {
     int number_amount = 1;

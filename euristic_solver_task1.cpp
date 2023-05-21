@@ -196,23 +196,6 @@ void greedy_algo3(int cpu_amount, const string& filename) {
 
 }
 
-int get_LB(int m, vector<int> overall) {
-  int n = overall.size();
-  if (n <= m) return 0;
-  sort(overall.begin(), overall.end());
-  reverse(overall.begin(), overall.end());
-  int o1 = overall[m];
-  int o2 = 0;
-  for (int i = m; i < n; i++) {
-    o2 += overall[i];
-  }
-  if (o2 % m == 0) o2 /= m;
-  else o2 = o2 / m + 1;
-  if (n <= 2 * m) return max(o1, o2);
-  int o3 = overall[2 * m - 1] + overall[2 * m];
-  return max({o1, o2, o3});
-}
-
 void two_groups(int cpu_amount, const string& filename) {
 
   // divide on two groups with LB = 1
@@ -234,8 +217,8 @@ void two_groups(int cpu_amount, const string& filename) {
     if (str.empty()) break;
     int x = strtol(str.c_str(), nullptr, 10);
 
-    int cur_coef = (int)(0.8 * get_LB(cpu_amount, overall_got));
-    int new_coef = (int)(1 * get_LB(cpu_amount, overall_got));
+    int cur_coef = (int)(0.8 * Helper::get_LB_task1(cpu_amount, overall_got));
+    int new_coef = (int)(1 * Helper::get_LB_task1(cpu_amount, overall_got));
     int min_index = -1;
 
     if (x <= cur_coef) {
@@ -300,7 +283,7 @@ void three_groups(int cpu_amount, const string& filename) {
     if (str.empty()) break;
     int x = strtol(str.c_str(), nullptr, 10);
 
-    int LB = get_LB(cpu_amount, overall_got);
+    int LB = Helper::get_LB_task1(cpu_amount, overall_got);
     int coef1 = (int)(1 * LB);
     int sub_coef1 = (int)(0.6 * LB);
     int coef2 = (int)(1 * LB);
@@ -368,7 +351,7 @@ void three_groups(int cpu_amount, const string& filename) {
 }
 
 void print_ans(const vector<int>& vc, const string& name) {
-  cout << name << ": [";
+  cout << name << " = [";
   for (int i = 0; i < vc.size(); i++) {
     cout << vc[i];
     if (i < vc.size() - 1) cout << ", ";
