@@ -1,0 +1,687 @@
+Test in tests/3/random/output1.txt solved
+Lower bound: 146424
+Solution: 146424
+
+Test in tests/3/random/output2.txt solved
+Lower bound: 1243871
+Solution: 1243874
+
+Test in tests/3/random/output3.txt solved
+Lower bound: 4460873
+Solution: 4462144
+
+Test in tests/3/random/output4.txt solved
+Lower bound: 10223322
+Solution: 10223930
+
+Test in tests/3/random/output5.txt solved
+Lower bound: 21291592
+Solution: 21291599
+
+Test in tests/3/random/output6.txt solved
+Lower bound: 36050213
+Solution: 36050604
+
+Test in tests/3/random/output7.txt solved
+Lower bound: 57261762
+Solution: 57262844
+
+Test in tests/3/random/output8.txt solved
+Lower bound: 83006577
+Solution: 83007365
+
+Test in tests/3/random/output9.txt solved
+Lower bound: 117127010
+Solution: 117127075
+
+Test in tests/3/random/output10.txt solved
+Lower bound: 164133086
+Solution: 164133123
+
+LB: [146424, 1243871, 4460873, 10223322, 21291592, 36050213, 57261762, 83006577, 117127010, 164133086]
+SOLS: [146424, 1243874, 4462144, 10223930, 21291599, 36050604, 57262844, 83007365, 117127075, 164133123]
+
+Test in tests/6/random/output1.txt solved
+Lower bound: 76428
+Solution: 76623
+
+Test in tests/6/random/output2.txt solved
+Lower bound: 609107
+Solution: 609267
+
+Test in tests/6/random/output3.txt solved
+Lower bound: 2216218
+Solution: 2217428
+
+Test in tests/6/random/output4.txt solved
+Lower bound: 5440171
+Solution: 5441779
+
+Test in tests/6/random/output5.txt solved
+Lower bound: 9800558
+Solution: 9801682
+
+Test in tests/6/random/output6.txt solved
+Lower bound: 17209923
+Solution: 17211416
+
+Test in tests/6/random/output7.txt solved
+Lower bound: 28477678
+Solution: 28577056
+
+Test in tests/6/random/output8.txt solved
+Lower bound: 42398670
+Solution: 42405589
+
+Test in tests/6/random/output9.txt solved
+Lower bound: 59478331
+Solution: 59492313
+
+Test in tests/6/random/output10.txt solved
+Lower bound: 82632853
+Solution: 82638493
+
+LB: [76428, 609107, 2216218, 5440171, 9800558, 17209923, 28477678, 42398670, 59478331, 82632853]
+SOLS: [76623, 609267, 2217428, 5441779, 9801682, 17211416, 28577056, 42405589, 59492313, 82638493]
+
+Test in tests/10/random/output1.txt solved
+Lower bound: 40335
+Solution: 40535
+
+Test in tests/10/random/output2.txt solved
+Lower bound: 351796
+Solution: 356164
+
+Test in tests/10/random/output3.txt solved
+Lower bound: 1251351
+Solution: 1256056
+
+Test in tests/10/random/output4.txt solved
+Lower bound: 2844014
+Solution: 2850007
+
+Test in tests/10/random/output5.txt solved
+Lower bound: 6057394
+Solution: 6064064
+
+Test in tests/10/random/output6.txt solved
+Lower bound: 10203878
+Solution: 10237556
+
+Test in tests/10/random/output7.txt solved
+Lower bound: 16169417
+Solution: 16221046
+
+Test in tests/10/random/output8.txt solved
+Lower bound: 23660850
+Solution: 23695270
+
+Test in tests/10/random/output9.txt solved
+Lower bound: 35368916
+Solution: 35396407
+
+Test in tests/10/random/output10.txt solved
+Lower bound: 49553047
+Solution: 49570305
+
+LB: [40335, 351796, 1251351, 2844014, 6057394, 10203878, 16169417, 23660850, 35368916, 49553047]
+SOLS: [40535, 356164, 1256056, 2850007, 6064064, 10237556, 16221046, 23695270, 35396407, 49570305]
+
+Test in tests/15/random/output1.txt solved
+Lower bound: 25996
+Solution: 27063
+
+Test in tests/15/random/output2.txt solved
+Lower bound: 232603
+Solution: 245525
+
+Test in tests/15/random/output3.txt solved
+Lower bound: 791047
+Solution: 822300
+
+Test in tests/15/random/output4.txt solved
+Lower bound: 1936628
+Solution: 2004595
+
+Test in tests/15/random/output5.txt solved
+Lower bound: 3917453
+Solution: 3988665
+
+Test in tests/15/random/output6.txt solved
+Lower bound: 6901371
+Solution: 6956201
+
+Test in tests/15/random/output7.txt solved
+Lower bound: 10700865
+Solution: 10744890
+
+Test in tests/15/random/output8.txt solved
+Lower bound: 16061881
+Solution: 16246066
+
+Test in tests/15/random/output9.txt solved
+Lower bound: 24114294
+Solution: 24204897
+
+Test in tests/15/random/output10.txt solved
+Lower bound: 32115896
+Solution: 32275819
+
+LB: [25996, 232603, 791047, 1936628, 3917453, 6901371, 10700865, 16061881, 24114294, 32115896]
+SOLS: [27063, 245525, 822300, 2004595, 3988665, 6956201, 10744890, 16246066, 24204897, 32275819]
+
+Test in tests/3/min/output1.txt solved
+Lower bound: 159286
+Solution: 159942
+
+Test in tests/3/min/output2.txt solved
+Lower bound: 1233379
+Solution: 1238175
+
+Test in tests/3/min/output3.txt solved
+Lower bound: 4450512
+Solution: 4473917
+
+Test in tests/3/min/output4.txt solved
+Lower bound: 9897941
+Solution: 9926981
+
+Test in tests/3/min/output5.txt solved
+Lower bound: 20587482
+Solution: 20638692
+
+Test in tests/3/min/output6.txt solved
+Lower bound: 36257932
+Solution: 36331045
+
+Test in tests/3/min/output7.txt solved
+Lower bound: 54718576
+Solution: 54830553
+
+Test in tests/3/min/output8.txt solved
+Lower bound: 83953527
+Solution: 84140802
+
+Test in tests/3/min/output9.txt solved
+Lower bound: 119603362
+Solution: 119837755
+
+Test in tests/3/min/output10.txt solved
+Lower bound: 161256068
+Solution: 161482597
+
+LB: [159286, 1233379, 4450512, 9897941, 20587482, 36257932, 54718576, 83953527, 119603362, 161256068]
+SOLS: [159942, 1238175, 4473917, 9926981, 20638692, 36331045, 54830553, 84140802, 119837755, 161482597]
+
+Test in tests/6/min/output1.txt solved
+Lower bound: 70764
+Solution: 74016
+
+Test in tests/6/min/output2.txt solved
+Lower bound: 600432
+Solution: 616338
+
+Test in tests/6/min/output3.txt solved
+Lower bound: 2194935
+Solution: 2223273
+
+Test in tests/6/min/output4.txt solved
+Lower bound: 5277636
+Solution: 5332973
+
+Test in tests/6/min/output5.txt solved
+Lower bound: 10209554
+Solution: 10303940
+
+Test in tests/6/min/output6.txt solved
+Lower bound: 17938331
+Solution: 18089226
+
+Test in tests/6/min/output7.txt solved
+Lower bound: 28054071
+Solution: 28221178
+
+Test in tests/6/min/output8.txt solved
+Lower bound: 41951454
+Solution: 42187272
+
+Test in tests/6/min/output9.txt solved
+Lower bound: 59736002
+Solution: 60107004
+
+Test in tests/6/min/output10.txt solved
+Lower bound: 80965680
+Solution: 81388932
+
+LB: [70764, 600432, 2194935, 5277636, 10209554, 17938331, 28054071, 41951454, 59736002, 80965680]
+SOLS: [74016, 616338, 2223273, 5332973, 10303940, 18089226, 28221178, 42187272, 60107004, 81388932]
+
+Test in tests/10/min/output1.txt solved
+Lower bound: 41925
+Solution: 45306
+
+Test in tests/10/min/output2.txt solved
+Lower bound: 367310
+Solution: 382807
+
+Test in tests/10/min/output3.txt solved
+Lower bound: 1268059
+Solution: 1310456
+
+Test in tests/10/min/output4.txt solved
+Lower bound: 3157107
+Solution: 3217764
+
+Test in tests/10/min/output5.txt solved
+Lower bound: 5702014
+Solution: 5808026
+
+Test in tests/10/min/output6.txt solved
+Lower bound: 10508967
+Solution: 10670076
+
+Test in tests/10/min/output7.txt solved
+Lower bound: 17093786
+Solution: 17305374
+
+Test in tests/10/min/output8.txt solved
+Lower bound: 24262583
+Solution: 24553107
+
+Test in tests/10/min/output9.txt solved
+Lower bound: 35370507
+Solution: 35778214
+
+Test in tests/10/min/output10.txt solved
+Lower bound: 48309386
+Solution: 48777097
+
+LB: [41925, 367310, 1268059, 3157107, 5702014, 10508967, 17093786, 24262583, 35370507, 48309386]
+SOLS: [45306, 382807, 1310456, 3217764, 5808026, 10670076, 17305374, 24553107, 35778214, 48777097]
+
+Test in tests/15/min/output1.txt solved
+Lower bound: 23216
+Solution: 27117
+
+Test in tests/15/min/output2.txt solved
+Lower bound: 224690
+Solution: 244124
+
+Test in tests/15/min/output3.txt solved
+Lower bound: 784275
+Solution: 819809
+
+Test in tests/15/min/output4.txt solved
+Lower bound: 1936834
+Solution: 2009874
+
+Test in tests/15/min/output5.txt solved
+Lower bound: 4050815
+Solution: 4175529
+
+Test in tests/15/min/output6.txt solved
+Lower bound: 6700556
+Solution: 6882026
+
+Test in tests/15/min/output7.txt solved
+Lower bound: 10721860
+Solution: 10951870
+
+Test in tests/15/min/output8.txt solved
+Lower bound: 15972937
+Solution: 16250199
+
+Test in tests/15/min/output9.txt solved
+Lower bound: 24717192
+Solution: 25081800
+
+Test in tests/15/min/output10.txt solved
+Lower bound: 32896373
+Solution: 33378353
+
+LB: [23216, 224690, 784275, 1936834, 4050815, 6700556, 10721860, 15972937, 24717192, 32896373]
+SOLS: [27117, 244124, 819809, 2009874, 4175529, 6882026, 10951870, 16250199, 25081800, 33378353]
+
+Test in tests/3/max/output1.txt solved
+Lower bound: 156558
+Solution: 156558
+
+Test in tests/3/max/output2.txt solved
+Lower bound: 1348626
+Solution: 1348626
+
+Test in tests/3/max/output3.txt solved
+Lower bound: 4315800
+Solution: 4315800
+
+Test in tests/3/max/output4.txt solved
+Lower bound: 10433214
+Solution: 10433377
+
+Test in tests/3/max/output5.txt solved
+Lower bound: 20822414
+Solution: 20822414
+
+Test in tests/3/max/output6.txt solved
+Lower bound: 35964887
+Solution: 35964887
+
+Test in tests/3/max/output7.txt solved
+Lower bound: 58385206
+Solution: 58385259
+
+Test in tests/3/max/output8.txt solved
+Lower bound: 82670704
+Solution: 82670704
+
+Test in tests/3/max/output9.txt solved
+Lower bound: 119932398
+Solution: 119932419
+
+Test in tests/3/max/output10.txt solved
+Lower bound: 157605545
+Solution: 157605665
+
+LB: [156558, 1348626, 4315800, 10433214, 20822414, 35964887, 58385206, 82670704, 119932398, 157605545]
+SOLS: [156558, 1348626, 4315800, 10433377, 20822414, 35964887, 58385259, 82670704, 119932419, 157605665]
+
+Test in tests/6/max/output1.txt solved
+Lower bound: 85681
+Solution: 85686
+
+Test in tests/6/max/output2.txt solved
+Lower bound: 634159
+Solution: 634185
+
+Test in tests/6/max/output3.txt solved
+Lower bound: 2256577
+Solution: 2256589
+
+Test in tests/6/max/output4.txt solved
+Lower bound: 5283609
+Solution: 5283615
+
+Test in tests/6/max/output5.txt solved
+Lower bound: 10146827
+Solution: 10146837
+
+Test in tests/6/max/output6.txt solved
+Lower bound: 17928715
+Solution: 17928720
+
+Test in tests/6/max/output7.txt solved
+Lower bound: 27501716
+Solution: 27501738
+
+Test in tests/6/max/output8.txt solved
+Lower bound: 41957743
+Solution: 41958230
+
+Test in tests/6/max/output9.txt solved
+Lower bound: 58495778
+Solution: 58495976
+
+Test in tests/6/max/output10.txt solved
+Lower bound: 81687128
+Solution: 81687154
+
+LB: [85681, 634159, 2256577, 5283609, 10146827, 17928715, 27501716, 41957743, 58495778, 81687128]
+SOLS: [85686, 634185, 2256589, 5283615, 10146837, 17928720, 27501738, 41958230, 58495976, 81687154]
+
+Test in tests/10/max/output1.txt solved
+Lower bound: 40122
+Solution: 40188
+
+Test in tests/10/max/output2.txt solved
+Lower bound: 343556
+Solution: 343717
+
+Test in tests/10/max/output3.txt solved
+Lower bound: 1274569
+Solution: 1274609
+
+Test in tests/10/max/output4.txt solved
+Lower bound: 3182763
+Solution: 3182968
+
+Test in tests/10/max/output5.txt solved
+Lower bound: 5912897
+Solution: 5913004
+
+Test in tests/10/max/output6.txt solved
+Lower bound: 10619828
+Solution: 10619927
+
+Test in tests/10/max/output7.txt solved
+Lower bound: 16450253
+Solution: 16450412
+
+Test in tests/10/max/output8.txt solved
+Lower bound: 24632364
+Solution: 24632532
+
+Test in tests/10/max/output9.txt solved
+Lower bound: 35465198
+Solution: 35465557
+
+Test in tests/10/max/output10.txt solved
+Lower bound: 50414820
+Solution: 50414998
+
+LB: [40122, 343556, 1274569, 3182763, 5912897, 10619828, 16450253, 24632364, 35465198, 50414820]
+SOLS: [40188, 343717, 1274609, 3182968, 5913004, 10619927, 16450412, 24632532, 35465557, 50414998]
+
+Test in tests/15/max/output1.txt solved
+Lower bound: 28244
+Solution: 28266
+
+Test in tests/15/max/output2.txt solved
+Lower bound: 236247
+Solution: 236305
+
+Test in tests/15/max/output3.txt solved
+Lower bound: 776496
+Solution: 776687
+
+Test in tests/15/max/output4.txt solved
+Lower bound: 2045920
+Solution: 2047505
+
+Test in tests/15/max/output5.txt solved
+Lower bound: 3956000
+Solution: 3956408
+
+Test in tests/15/max/output6.txt solved
+Lower bound: 6532772
+Solution: 6533295
+
+Test in tests/15/max/output7.txt solved
+Lower bound: 11092948
+Solution: 11093117
+
+Test in tests/15/max/output8.txt solved
+Lower bound: 16103566
+Solution: 16104108
+
+Test in tests/15/max/output9.txt solved
+Lower bound: 23869274
+Solution: 23870157
+
+Test in tests/15/max/output10.txt solved
+Lower bound: 32056318
+Solution: 32057425
+
+LB: [28244, 236247, 776496, 2045920, 3956000, 6532772, 11092948, 16103566, 23869274, 32056318]
+SOLS: [28266, 236305, 776687, 2047505, 3956408, 6533295, 11093117, 16104108, 23870157, 32057425]
+
+Test in tests/3/jumps/output1.txt solved
+Lower bound: 151601
+Solution: 151601
+
+Test in tests/3/jumps/output2.txt solved
+Lower bound: 1219732
+Solution: 1219849
+
+Test in tests/3/jumps/output3.txt solved
+Lower bound: 4200596
+Solution: 4200605
+
+Test in tests/3/jumps/output4.txt solved
+Lower bound: 10457720
+Solution: 10458100
+
+Test in tests/3/jumps/output5.txt solved
+Lower bound: 20876812
+Solution: 20876824
+
+Test in tests/3/jumps/output6.txt solved
+Lower bound: 36856014
+Solution: 36856299
+
+Test in tests/3/jumps/output7.txt solved
+Lower bound: 56526521
+Solution: 56526876
+
+Test in tests/3/jumps/output8.txt solved
+Lower bound: 85022992
+Solution: 85023252
+
+Test in tests/3/jumps/output9.txt solved
+Lower bound: 118607753
+Solution: 118608012
+
+Test in tests/3/jumps/output10.txt solved
+Lower bound: 166164832
+Solution: 166165582
+
+LB: [151601, 1219732, 4200596, 10457720, 20876812, 36856014, 56526521, 85022992, 118607753, 166164832]
+SOLS: [151601, 1219849, 4200605, 10458100, 20876824, 36856299, 56526876, 85023252, 118608012, 166165582]
+
+Test in tests/6/jumps/output1.txt solved
+Lower bound: 70330
+Solution: 70611
+
+Test in tests/6/jumps/output2.txt solved
+Lower bound: 651408
+Solution: 651661
+
+Test in tests/6/jumps/output3.txt solved
+Lower bound: 2046703
+Solution: 2047650
+
+Test in tests/6/jumps/output4.txt solved
+Lower bound: 4801419
+Solution: 4806005
+
+Test in tests/6/jumps/output5.txt solved
+Lower bound: 10064914
+Solution: 10067383
+
+Test in tests/6/jumps/output6.txt solved
+Lower bound: 17514742
+Solution: 17517004
+
+Test in tests/6/jumps/output7.txt solved
+Lower bound: 28037807
+Solution: 28043110
+
+Test in tests/6/jumps/output8.txt solved
+Lower bound: 43730671
+Solution: 43734847
+
+Test in tests/6/jumps/output9.txt solved
+Lower bound: 60390842
+Solution: 60398044
+
+Test in tests/6/jumps/output10.txt solved
+Lower bound: 82406142
+Solution: 82411740
+
+LB: [70330, 651408, 2046703, 4801419, 10064914, 17514742, 28037807, 43730671, 60390842, 82406142]
+SOLS: [70611, 651661, 2047650, 4806005, 10067383, 17517004, 28043110, 43734847, 60398044, 82411740]
+
+Test in tests/10/jumps/output1.txt solved
+Lower bound: 37607
+Solution: 38114
+
+Test in tests/10/jumps/output2.txt solved
+Lower bound: 387652
+Solution: 390387
+
+Test in tests/10/jumps/output3.txt solved
+Lower bound: 1280605
+Solution: 1286528
+
+Test in tests/10/jumps/output4.txt solved
+Lower bound: 3021241
+Solution: 3032925
+
+Test in tests/10/jumps/output5.txt solved
+Lower bound: 5874887
+Solution: 5939829
+
+Test in tests/10/jumps/output6.txt solved
+Lower bound: 10396984
+Solution: 10405599
+
+Test in tests/10/jumps/output7.txt solved
+Lower bound: 17231384
+Solution: 17254293
+
+Test in tests/10/jumps/output8.txt solved
+Lower bound: 24648047
+Solution: 24685969
+
+Test in tests/10/jumps/output9.txt solved
+Lower bound: 35263905
+Solution: 35280419
+
+Test in tests/10/jumps/output10.txt solved
+Lower bound: 47510831
+Solution: 47547102
+
+LB: [37607, 387652, 1280605, 3021241, 5874887, 10396984, 17231384, 24648047, 35263905, 47510831]
+SOLS: [38114, 390387, 1286528, 3032925, 5939829, 10405599, 17254293, 24685969, 35280419, 47547102]
+
+Test in tests/15/jumps/output1.txt solved
+Lower bound: 23117
+Solution: 25016
+
+Test in tests/15/jumps/output2.txt solved
+Lower bound: 237575
+Solution: 250374
+
+Test in tests/15/jumps/output3.txt solved
+Lower bound: 852840
+Solution: 871433
+
+Test in tests/15/jumps/output4.txt solved
+Lower bound: 2033625
+Solution: 2046189
+
+Test in tests/15/jumps/output5.txt solved
+Lower bound: 3892982
+Solution: 3952880
+
+Test in tests/15/jumps/output6.txt solved
+Lower bound: 6951133
+Solution: 6998553
+
+Test in tests/15/jumps/output7.txt solved
+Lower bound: 10971428
+Solution: 11024325
+
+Test in tests/15/jumps/output8.txt solved
+Lower bound: 16747010
+Solution: 16883620
+
+Test in tests/15/jumps/output9.txt solved
+Lower bound: 23495408
+Solution: 23671927
+
+Test in tests/15/jumps/output10.txt solved
+Lower bound: 32635302
+Solution: 32732603
+
+LB: [23117, 237575, 852840, 2033625, 3892982, 6951133, 10971428, 16747010, 23495408, 32635302]
+SOLS: [25016, 250374, 871433, 2046189, 3952880, 6998553, 11024325, 16883620, 23671927, 32732603]
