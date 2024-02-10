@@ -1,2 +1,2 @@
-# course_work
-Code for the course project and course work about the task from timetable theory
+# diploma_work
+Code for the diploma work about the tasks from timetable theory
