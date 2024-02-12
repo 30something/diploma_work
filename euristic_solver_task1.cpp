@@ -362,109 +362,34 @@ void print_ans(const vector<int>& vc, const string& name) {
 int main() {
 
   vector<int> pr = {3, 6, 10, 15};
+  vector<string> strategies = {"random", "min", "max", "jumps"};
 
-  for (auto cr : pr) {
-    int number_amount;
-    string proc_amount = to_string(cr), file;
+  for (const auto& strategy : strategies) {
+    for (auto cr : pr) {
+      int number_amount;
+      string proc_amount = to_string(cr), file;
 
-    dummy_list.clear();
-    for (int i = 1; i <= 3; i++) greedy_list[i].clear();
-    for (int i = 0; i < 2; i++) groups_divide[i].clear();
+      dummy_list.clear();
+      for (int i = 1; i <= 3; i++) greedy_list[i].clear();
+      for (int i = 0; i < 2; i++) groups_divide[i].clear();
 
-    for (number_amount = 1; number_amount <= 10; number_amount++) {
-      file = "tests/" + proc_amount + "/random/output" + to_string(number_amount) + ".txt";
-      dummy_distribution(cr, file);
-      greedy_algo1(cr, file);
-      greedy_algo2(cr, file);
-      greedy_algo3(cr, file);
-      two_groups(cr, file);
-      three_groups(cr, file);
+      for (number_amount = 1; number_amount <= 10; number_amount++) {
+        file = "tests/" + proc_amount + "/" + strategy + "/output" + to_string(number_amount) + ".txt";
+        dummy_distribution(cr, file);
+        greedy_algo1(cr, file);
+        greedy_algo2(cr, file);
+        greedy_algo3(cr, file);
+        two_groups(cr, file);
+        three_groups(cr, file);
+      }
+      print_ans(dummy_list, "Dummy");
+      print_ans(greedy_list[1], "G1");
+      print_ans(greedy_list[2], "G2");
+      print_ans(greedy_list[3], "G3");
+      print_ans(groups_divide[0], "Two groups");
+      print_ans(groups_divide[1], "Three groups");
+      cout << endl;
     }
-    print_ans(dummy_list, "Dummy");
-    print_ans(greedy_list[1], "G1");
-    print_ans(greedy_list[2], "G2");
-    print_ans(greedy_list[3], "G3");
-    print_ans(groups_divide[0], "Two groups");
-    print_ans(groups_divide[1], "Three groups");
-    cout << endl;
-  }
-
-  for (auto cr : pr) {
-    int number_amount;
-    string proc_amount = to_string(cr), file;
-
-    dummy_list.clear();
-    for (int i = 1; i <= 3; i++) greedy_list[i].clear();
-    for (int i = 0; i < 2; i++) groups_divide[i].clear();
-
-    for (number_amount = 1; number_amount <= 10; number_amount++) {
-      file = "tests/" + proc_amount + "/min/output" + to_string(number_amount) + ".txt";
-      dummy_distribution(cr, file);
-      greedy_algo1(cr, file);
-      greedy_algo2(cr, file);
-      greedy_algo3(cr, file);
-      two_groups(cr, file);
-      three_groups(cr, file);
-    }
-    print_ans(dummy_list, "Dummy");
-    print_ans(greedy_list[1], "G1");
-    print_ans(greedy_list[2], "G2");
-    print_ans(greedy_list[3], "G3");
-    print_ans(groups_divide[0], "Two groups");
-    print_ans(groups_divide[1], "Three groups");
-    cout << endl;
-  }
-
-  for (auto cr : pr) {
-    int number_amount;
-    string proc_amount = to_string(cr), file;
-
-    dummy_list.clear();
-    for (int i = 1; i <= 3; i++) greedy_list[i].clear();
-    for (int i = 0; i < 2; i++) groups_divide[i].clear();
-
-    for (number_amount = 1; number_amount <= 10; number_amount++) {
-      file = "tests/" + proc_amount + "/max/output" + to_string(number_amount) + ".txt";
-      dummy_distribution(cr, file);
-      greedy_algo1(cr, file);
-      greedy_algo2(cr, file);
-      greedy_algo3(cr, file);
-      two_groups(cr, file);
-      three_groups(cr, file);
-    }
-    print_ans(dummy_list, "Dummy");
-    print_ans(greedy_list[1], "G1");
-    print_ans(greedy_list[2], "G2");
-    print_ans(greedy_list[3], "G3");
-    print_ans(groups_divide[0], "Two groups");
-    print_ans(groups_divide[1], "Three groups");
-    cout << endl;
-  }
-
-  for (auto cr : pr) {
-    int number_amount;
-    string proc_amount = to_string(cr), file;
-
-    dummy_list.clear();
-    for (int i = 1; i <= 3; i++) greedy_list[i].clear();
-    for (int i = 0; i < 2; i++) groups_divide[i].clear();
-
-    for (number_amount = 1; number_amount <= 10; number_amount++) {
-      file = "tests/" + proc_amount + "/jumps/output" + to_string(number_amount) + ".txt";
-      dummy_distribution(cr, file);
-      greedy_algo1(cr, file);
-      greedy_algo2(cr, file);
-      greedy_algo3(cr, file);
-      two_groups(cr, file);
-      three_groups(cr, file);
-    }
-    print_ans(dummy_list, "Dummy");
-    print_ans(greedy_list[1], "G1");
-    print_ans(greedy_list[2], "G2");
-    print_ans(greedy_list[3], "G3");
-    print_ans(groups_divide[0], "Two groups");
-    print_ans(groups_divide[1], "Three groups");
-    cout << endl;
   }
 
   return 0;

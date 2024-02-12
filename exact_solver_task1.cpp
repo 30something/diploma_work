@@ -155,78 +155,27 @@ void print_lower_bound_and_solves(const vector<int>& lower_bounds_list,
 
 int main() {
   vector<int> pr = {3, 6, 10, 15};
+  vector<string> strategies = {"random", "min", "max", "jumps"};
   int solve_sec;
 
-  for (auto cr : pr) {
-    int number_amount = 1;
-    string proc_amount = to_string(cr);
-    vector<int> lower_bounds_list, sols_list;
+  for (const auto& strategy : strategies) {
+    for (auto cr : pr) {
+      int number_amount = 1;
+      string proc_amount = to_string(cr);
+      vector<int> lower_bounds_list, sols_list;
 
-    for (int elements = 100; elements <= 1000; elements += 100) {
-      if (elements <= 500) solve_sec = 30;
-      else solve_sec = 60;
-      solve_test(cr, elements, solve_sec,
-                 "tests/" + proc_amount + "/random/test" + to_string(number_amount) + ".txt",
-                 "tests/" + proc_amount + "/random/output" + to_string(number_amount) + ".txt",
-                 lower_bounds_list, sols_list);
-      number_amount++;
+      for (int elements = 100; elements <= 1000; elements += 100) {
+        if (elements <= 500) solve_sec = 30;
+        else solve_sec = 60;
+        solve_test(cr, elements, solve_sec,
+                   "tests/" + proc_amount + "/" + strategy + "/test" + to_string(number_amount) + ".txt",
+                   "tests/" + proc_amount + "/" + strategy + "/output" + to_string(number_amount) + ".txt",
+                   lower_bounds_list, sols_list);
+        number_amount++;
+      }
+
+      print_lower_bound_and_solves(lower_bounds_list, sols_list);
     }
-
-    print_lower_bound_and_solves(lower_bounds_list, sols_list);
-  }
-
-  for (auto cr : pr) {
-    int number_amount = 1;
-    string proc_amount = to_string(cr);
-    vector<int> lower_bounds_list, sols_list;
-
-    for (int elements = 100; elements <= 1000; elements += 100) {
-      if (elements <= 500) solve_sec = 30;
-      else solve_sec = 60;
-      solve_test(cr, elements, solve_sec,
-                 "tests/" + proc_amount + "/min/test" + to_string(number_amount) + ".txt",
-                 "tests/" + proc_amount + "/min/output" + to_string(number_amount) + ".txt",
-                 lower_bounds_list, sols_list);
-      number_amount++;
-    }
-
-    print_lower_bound_and_solves(lower_bounds_list, sols_list);
-  }
-
-  for (auto cr : pr) {
-    int number_amount = 1;
-    string proc_amount = to_string(cr);
-    vector<int> lower_bounds_list, sols_list;
-
-    for (int elements = 100; elements <= 1000; elements += 100) {
-      if (elements <= 500) solve_sec = 30;
-      else solve_sec = 60;
-      solve_test(cr, elements, solve_sec,
-                 "tests/" + proc_amount + "/max/test" + to_string(number_amount) + ".txt",
-                 "tests/" + proc_amount + "/max/output" + to_string(number_amount) + ".txt",
-                 lower_bounds_list, sols_list);
-      number_amount++;
-    }
-
-    print_lower_bound_and_solves(lower_bounds_list, sols_list);
-  }
-
-  for (auto cr : pr) {
-    int number_amount = 1;
-    string proc_amount = to_string(cr);
-    vector<int> lower_bounds_list, sols_list;
-
-    for (int elements = 100; elements <= 1000; elements += 100) {
-      if (elements <= 500) solve_sec = 30;
-      else solve_sec = 60;
-      solve_test(cr, elements, solve_sec,
-                 "tests/" + proc_amount + "/jumps/test" + to_string(number_amount) + ".txt",
-                 "tests/" + proc_amount + "/jumps/output" + to_string(number_amount) + ".txt",
-                 lower_bounds_list, sols_list);
-      number_amount++;
-    }
-
-    print_lower_bound_and_solves(lower_bounds_list, sols_list);
   }
 
   return 0;
