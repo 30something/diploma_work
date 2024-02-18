@@ -18,7 +18,12 @@ void generate_test(int amount, int x_coef, int x_plus, Strategy strategy,
                    const string& test_folder, const string& test_file) {
 
   create_folder(test_folder);
-  ofstream ftest(test_folder + "\\" + test_file);
+  ofstream ftest;
+  if (amount == 100) {
+    ftest.open(test_folder + "\\" + test_file);
+  } else {
+    ftest.open(test_folder + "\\" + test_file, ios_base::app);
+  }
   vector<int> overall;
 
   for (int i = 1; i <= amount; i++) {
@@ -81,32 +86,32 @@ void generate_test(int amount, int x_coef, int x_plus, Strategy strategy,
 
   }
 
+  ftest << amount << '\n';
   for (auto f : overall) {
-    ftest << f << '\n';
+    ftest << f << ' ';
   }
+  ftest << "\n\n";
 }
 
 int main() {
 
-//  vector<int> pr = {30};
-  vector<int> pr = {10, 30, 60, 90};
+  vector<string> limits = {"n", "n2"};
+  vector<int> int_limits = {3000, 1000};
 
-  for (auto cr : pr) {
-    int number_amount = 1;
-    string proc_amount = to_string(cr);
-    for (int elements = 100; elements <= 1000; elements += 100) {
-      string test_filename = "output" + to_string(number_amount) + ".txt";
-
-      generate_test(elements, elements * elements, 1, RANDOM_SHUFFLE,
-                    "tests/" + proc_amount + "/random", test_filename);
-      generate_test(elements, elements * elements, 1, PRIORITY_MIN,
-                    "tests/" + proc_amount + "/min", test_filename);
-      generate_test(elements, elements * elements, 1, PRIORITY_MAX,
-                    "tests/" + proc_amount + "/max", test_filename);
-      generate_test(elements, elements * elements, 1, JUMPS,
-                    "tests/" + proc_amount + "/jumps", test_filename);
-
-      number_amount++;
+  for (int index = 0; index < limits.size(); index++) {
+    string test_filename = "tests_inputs_" + limits[index] + ".txt";
+    string testfolder = "tests_" + limits[index];
+    for (int elements = 100; elements <= int_limits[index]; elements += 100) {
+      int x_coef = elements;
+      if (limits[index] == "n2") x_coef = elements * elements;
+      generate_test(elements, x_coef, 1, RANDOM_SHUFFLE,
+                    testfolder + "/random", test_filename);
+      generate_test(elements, x_coef, 1, PRIORITY_MIN,
+                    testfolder + "/min", test_filename);
+      generate_test(elements, x_coef, 1, PRIORITY_MAX,
+                    testfolder + "/max", test_filename);
+      generate_test(elements, x_coef, 1, JUMPS,
+                    testfolder + "/jumps", test_filename);
     }
   }
 

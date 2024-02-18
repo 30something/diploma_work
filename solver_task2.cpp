@@ -7,11 +7,9 @@ vector<double> greedy_list[4];
 vector<double> dummy_list;
 mt19937 gen32(chrono::steady_clock::now().time_since_epoch().count());
 
-void dummy_distribution(const Params& params, const string& filename) {
+void dummy_distribution(const Params& params, const vector<int>& overall) {
 
   // choose 1, 2, 3, ..., 1, 2, 3, ...
-  cout << "dummy for " << filename << endl;
-
   int cpu_amount = params.cpu_amount;
   int m1 = params.m1;
   int k = params.k;
@@ -20,7 +18,6 @@ void dummy_distribution(const Params& params, const string& filename) {
   int S = params.S;
   int m2 = R * (k * (S - 1) + x);
 
-  ifstream fin(filename);
   double sums[cpu_amount + 1];
   double speeds[cpu_amount + 1];
 
@@ -32,31 +29,22 @@ void dummy_distribution(const Params& params, const string& filename) {
 
   string str;
   int cur_index = 1;
-  while (true) {
-    getline(fin, str);
-    if (str.empty()) break;
-    double val = strtol(str.c_str(), nullptr, 10);
-
+  for (double val : overall) {
     sums[cur_index] += val / speeds[cur_index];
     cur_index++;
     if (cur_index > cpu_amount) cur_index = 1;
-
   }
 
   double gen_mx = -1;
   for (int i = 1; i <= cpu_amount; i++) {
     gen_mx = max(gen_mx, sums[i]);
   }
-
   dummy_list.push_back(gen_mx);
-
 }
 
-void greedy_algo1(const Params& params, const string& filename) {
+void greedy_algo1(const Params& params, const vector<int>& overall) {
 
   // choose minimal load
-  cout << "greedy1 for " << filename << endl;
-
   int cpu_amount = params.cpu_amount;
   int m1 = params.m1;
   int k = params.k;
@@ -65,7 +53,6 @@ void greedy_algo1(const Params& params, const string& filename) {
   int S = params.S;
   int m2 = R * (k * (S - 1) + x);
 
-  ifstream fin(filename);
   double sums[cpu_amount + 1];
   double speeds[cpu_amount + 1];
 
@@ -76,36 +63,26 @@ void greedy_algo1(const Params& params, const string& filename) {
   }
 
   string str;
-  while (true) {
-    getline(fin, str);
-    if (str.empty()) break;
-    double val = strtol(str.c_str(), nullptr, 10);
-
+  for (double val : overall) {
     int min_index = 1;
     for (int i = 2; i <= cpu_amount; i++) {
       if (sums[i] < sums[min_index]) {
         min_index = i;
       }
     }
-
     sums[min_index] += val / speeds[min_index];
-
   }
 
   double gen_mx = -1;
   for (int i = 1; i <= cpu_amount; i++) {
     gen_mx = max(gen_mx, sums[i]);
   }
-
   greedy_list[1].push_back(gen_mx);
-
 }
 
-void greedy_algo2(const Params& params, const string& filename) {
+void greedy_algo2(const Params& params, const vector<int>& overall) {
 
   // choose with minimal adding to system
-  cout << "greedy2 for " << filename << endl;
-
   int cpu_amount = params.cpu_amount;
   int m1 = params.m1;
   int k = params.k;
@@ -114,7 +91,6 @@ void greedy_algo2(const Params& params, const string& filename) {
   int S = params.S;
   int m2 = R * (k * (S - 1) + x);
 
-  ifstream fin(filename);
   double sums[cpu_amount + 1];
   double speeds[cpu_amount + 1];
 
@@ -126,11 +102,7 @@ void greedy_algo2(const Params& params, const string& filename) {
 
   string str;
   double cload = 0;
-  while (true) {
-    getline(fin, str);
-    if (str.empty()) break;
-    double val = strtol(str.c_str(), nullptr, 10);
-
+  for (double val : overall) {
     double diff = -1, nload;
     int diff_ind;
     for (int i = 1; i <= cpu_amount; i++) {
@@ -147,23 +119,18 @@ void greedy_algo2(const Params& params, const string& filename) {
 
     sums[diff_ind] += val / speeds[diff_ind];
     cload += diff;
-
   }
 
   double gen_mx = -1;
   for (int i = 1; i <= cpu_amount; i++) {
     gen_mx = max(gen_mx, sums[i]);
   }
-
   greedy_list[2].push_back(gen_mx);
-
 }
 
-void greedy_algo3(const Params& params, const string& filename) {
+void greedy_algo3(const Params& params, const vector<int>& overall) {
 
   // combination of #2 + #1
-  cout << "greedy3 for " << filename << endl;
-
   int cpu_amount = params.cpu_amount;
   int m1 = params.m1;
   int k = params.k;
@@ -172,7 +139,6 @@ void greedy_algo3(const Params& params, const string& filename) {
   int S = params.S;
   int m2 = R * (k * (S - 1) + x);
 
-  ifstream fin(filename);
   double sums[cpu_amount + 1];
   double speeds[cpu_amount + 1];
 
@@ -184,11 +150,7 @@ void greedy_algo3(const Params& params, const string& filename) {
 
   string str;
   double cload = 0;
-  while (true) {
-    getline(fin, str);
-    if (str.empty()) break;
-    double val = strtol(str.c_str(), nullptr, 10);
-
+  for (double val : overall) {
     int diff_ind;
     double diff = -1, nload;
     for (int i = 1; i <= cpu_amount; i++) {
@@ -205,23 +167,18 @@ void greedy_algo3(const Params& params, const string& filename) {
 
     sums[diff_ind] += val / speeds[diff_ind];
     cload += diff;
-
   }
 
   double gen_mx = -1;
   for (int i = 1; i <= cpu_amount; i++) {
     gen_mx = max(gen_mx, sums[i]);
   }
-
   greedy_list[3].push_back(gen_mx);
-
 }
 
-void main_algo(const Params& params, const string& filename) {
+void main_algo(const Params& params, const vector<int>& overall) {
 
   // main approximate algorithm
-  cout << "main approximate for " << filename << endl;
-
   int cpu_amount = params.cpu_amount;
   int m1 = params.m1;
   int k = params.k;
@@ -232,7 +189,6 @@ void main_algo(const Params& params, const string& filename) {
   double phi = params.phi, psi = params.psi, B = params.B;
   int m2 = R * (k * (S - 1) + x);
 
-  ifstream fin(filename);
   double sums[cpu_amount + 1];
   double speeds[cpu_amount + 1];
   int c1 = 1, c2 = k * (S - 1) + 1, c3 = 0;
@@ -256,10 +212,8 @@ void main_algo(const Params& params, const string& filename) {
 
   string str;
   vector<int> overall_values;
-  while (true) {
-    getline(fin, str);
-    if (str.empty()) break;
-    int val = strtol(str.c_str(), nullptr, 10);
+  for (int val : overall) {
+
     double dval = val;
     overall_values.push_back(val);
 
@@ -366,9 +320,7 @@ void main_algo(const Params& params, const string& filename) {
   for (int i = 1; i <= cpu_amount; i++) {
     gen_mx = max(gen_mx, sums[i]);
   }
-
   main_algo_list.push_back(gen_mx);
-
 }
 
 void print_ans(const vector<double>& vc, const string& name) {
@@ -381,9 +333,8 @@ void print_ans(const vector<double>& vc, const string& name) {
   cout << "]" << endl;
 }
 
-void test_by_strategy(const string& strategy) {
-
-  int S = 2;
+void test_by_strategy(const string& limit, const string& strategy) {
+  int S = 2, limit_int;
   vector<int> ms = {10, 30, 60, 90};
   vector<int> m1s = {6, 6, 16, 18};
   vector<int> ks = {4, 4, 5, 8};
@@ -394,22 +345,36 @@ void test_by_strategy(const string& strategy) {
   vector<double> psis = {1., 1. / 3, 1. / 3, 1. / 4};
   vector<double> B = {2.75, 4.75, 3.94, 7.35};
 
+  string foldername = "tests_" + limit + "/" + strategy;
+  string test_file = foldername + "/tests_inputs_" + limit + ".txt";
+
+  if (limit == "n") limit_int = 3000;
+  else if (limit == "n2") limit_int = 1000;
+
   for (int i = 0; i < ms.size(); i++) {
+    ifstream ftest(test_file);
     string proc_amount = to_string(ms[i]), file;
 
     main_algo_list.clear();
     for (int j = 1; j <= 3; j++) greedy_list[j].clear();
     dummy_list.clear();
 
-    for (int number_amount = 1; number_amount <= 10; number_amount++) {
-      file = "tests/" + proc_amount + "/" + strategy + "/output" + to_string(number_amount) + ".txt";
+    for (int amount = 100; amount <= limit_int; amount += 100) {
       Params cur_params = {ms[i], S, m1s[i], ks[i], Rs[i], ls[i], xs[i], phis[i], psis[i], B[i]};
 
-      main_algo(cur_params, file);
-      greedy_algo1(cur_params, file);
-      greedy_algo2(cur_params, file);
-      greedy_algo3(cur_params, file);
-      dummy_distribution(cur_params, file);
+      vector<int> overall;
+      int read_amount, x;
+      ftest >> read_amount;
+      for (int k = 1; k <= read_amount; k++) {
+        ftest >> x;
+        overall.push_back(x);
+      }
+
+      main_algo(cur_params, overall);
+      greedy_algo1(cur_params, overall);
+      greedy_algo2(cur_params, overall);
+      greedy_algo3(cur_params, overall);
+      dummy_distribution(cur_params, overall);
     }
     this_thread::sleep_for(std::chrono::milliseconds(2000));
 
@@ -417,19 +382,23 @@ void test_by_strategy(const string& strategy) {
     print_ans(greedy_list[1], "G1");
     print_ans(greedy_list[2], "G2");
     print_ans(greedy_list[3], "G3");
-    print_ans(dummy_list, "Dummy");
-
+    print_ans(dummy_list, "D");
     cout << endl;
+    ftest.close();
   }
 
 }
 
 int main() {
 
-  test_by_strategy("random");
-  test_by_strategy("min");
-  test_by_strategy("max");
-  test_by_strategy("jumps");
+  vector<string> limits = {"n", "n2"};
+
+  for (const auto& limit : limits) {
+    test_by_strategy(limit, "random");
+    test_by_strategy(limit, "min");
+    test_by_strategy(limit, "max");
+    test_by_strategy(limit, "jumps");
+  }
 
   return 0;
 }

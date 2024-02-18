@@ -14,7 +14,7 @@
 using namespace std;
 
 const int kMaxCpuAmount = 110;
-const int kMaxTasksAmount = 2010;
+const int kMaxTasksAmount = 3010;
 
 struct Params {
   int cpu_amount;

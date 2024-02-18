@@ -7,12 +7,9 @@ vector<int> groups_divide[2];
 vector<int> dummy_list;
 mt19937 gen32(chrono::steady_clock::now().time_since_epoch().count());
 
-void dummy_distribution(int cpu_amount, const string& filename) {
+void dummy_distribution(int cpu_amount, const vector<int>& inputs) {
 
   // choose 1, 2, 3, ..., 1, 2, 3, ...
-  cout << "dummy for " << filename << endl;
-
-  ifstream fin(filename);
   int sums[cpu_amount + 1];
   int maxs[cpu_amount + 1];
   vector<int> loads[cpu_amount + 1];
@@ -23,17 +20,12 @@ void dummy_distribution(int cpu_amount, const string& filename) {
 
   string str;
   int cur_index = 1;
-  while (true) {
-    getline(fin, str);
-    if (str.empty()) break;
-    int x = strtol(str.c_str(), nullptr, 10);
-
+  for (int x : inputs) {
     loads[cur_index].push_back(x);
     sums[cur_index] += x;
     maxs[cur_index] = max(x, maxs[cur_index]);
     cur_index++;
     if (cur_index > cpu_amount) cur_index = 1;
-
   }
 
   int gen_mx = -1;
@@ -43,15 +35,11 @@ void dummy_distribution(int cpu_amount, const string& filename) {
   }
 
   dummy_list.push_back(gen_mx);
-
 }
 
-void greedy_algo1(int cpu_amount, const string& filename) {
+void greedy_algo1(int cpu_amount, const vector<int>& inputs) {
 
   // choose minimal load
-  cout << "greedy1 for " << filename << endl;
-
-  ifstream fin(filename);
   int sums[cpu_amount + 1];
   int maxs[cpu_amount + 1];
   vector<int> loads[cpu_amount + 1];
@@ -61,22 +49,16 @@ void greedy_algo1(int cpu_amount, const string& filename) {
   }
 
   string str;
-  while (true) {
-    getline(fin, str);
-    if (str.empty()) break;
-    int x = strtol(str.c_str(), nullptr, 10);
-
+  for (int x : inputs) {
     int min_index = 1;
     for (int i = 2; i <= cpu_amount; i++) {
       if (sums[i] < sums[min_index]) {
         min_index = i;
       }
     }
-
     loads[min_index].push_back(x);
     sums[min_index] += x;
     maxs[min_index] = max(x, maxs[min_index]);
-
   }
 
   int gen_mx = -1;
@@ -86,15 +68,11 @@ void greedy_algo1(int cpu_amount, const string& filename) {
   }
 
   greedy_list[1].push_back(gen_mx);
-
 }
 
-void greedy_algo2(int cpu_amount, const string& filename) {
+void greedy_algo2(int cpu_amount, const vector<int>& inputs) {
 
   // choose with minimal adding to system
-  cout << "greedy2 for " << filename << endl;
-
-  ifstream fin(filename);
   int sums[cpu_amount + 1];
   int maxs[cpu_amount + 1];
   vector<int> loads[cpu_amount + 1];
@@ -105,11 +83,7 @@ void greedy_algo2(int cpu_amount, const string& filename) {
 
   string str;
   int cload = 0;
-  while (true) {
-    getline(fin, str);
-    if (str.empty()) break;
-    int x = strtol(str.c_str(), nullptr, 10);
-
+  for (int x : inputs) {
     int diff = -1, diff_ind, nload;
     for (int i = 1; i <= cpu_amount; i++) {
       int mx = maxs[i], nsum;
@@ -130,7 +104,6 @@ void greedy_algo2(int cpu_amount, const string& filename) {
     sums[diff_ind] += x;
     maxs[diff_ind] = max(maxs[diff_ind], x);
     cload += diff;
-
   }
 
   int gen_mx = -1;
@@ -140,15 +113,11 @@ void greedy_algo2(int cpu_amount, const string& filename) {
   }
 
   greedy_list[2].push_back(gen_mx);
-
 }
 
-void greedy_algo3(int cpu_amount, const string& filename) {
+void greedy_algo3(int cpu_amount, const vector<int>& inputs) {
 
   // combination of #2 + #1
-  cout << "greedy3 for " << filename << endl;
-
-  ifstream fin(filename);
   int sums[cpu_amount + 1];
   int maxs[cpu_amount + 1];
   vector<int> loads[cpu_amount + 1];
@@ -159,11 +128,7 @@ void greedy_algo3(int cpu_amount, const string& filename) {
 
   string str;
   int cload = 0;
-  while (true) {
-    getline(fin, str);
-    if (str.empty()) break;
-    int x = strtol(str.c_str(), nullptr, 10);
-
+  for (int x : inputs) {
     int diff = -1, diff_ind, nload;
     for (int i = 1; i <= cpu_amount; i++) {
       int mx = maxs[i];
@@ -183,7 +148,6 @@ void greedy_algo3(int cpu_amount, const string& filename) {
     sums[diff_ind] += x;
     maxs[diff_ind] = max(maxs[diff_ind], x);
     cload += diff;
-
   }
 
   int gen_mx = -1;
@@ -193,15 +157,11 @@ void greedy_algo3(int cpu_amount, const string& filename) {
   }
 
   greedy_list[3].push_back(gen_mx);
-
 }
 
-void two_groups(int cpu_amount, const string& filename) {
+void two_groups(int cpu_amount, const vector<int>& inputs) {
 
   // divide on two groups with LB = 1
-  cout << "divide on two groups (LB = 1) for " << filename << endl;
-
-  ifstream fin(filename);
   int sums[cpu_amount + 1];
   int maxs[cpu_amount + 1];
   int max_cpu_border = cpu_amount / 2;
@@ -212,11 +172,7 @@ void two_groups(int cpu_amount, const string& filename) {
   }
 
   string str;
-  while (true) {
-    getline(fin, str);
-    if (str.empty()) break;
-    int x = strtol(str.c_str(), nullptr, 10);
-
+  for (int x : inputs) {
     int cur_coef = (int)(0.8 * Helper::get_LB_task1(cpu_amount, overall_got));
     int new_coef = (int)(1 * Helper::get_LB_task1(cpu_amount, overall_got));
     int min_index = -1;
@@ -241,14 +197,12 @@ void two_groups(int cpu_amount, const string& filename) {
         }
       }
     }
-
     if (min_index == -1) min_index = 1;
 
     overall_got.push_back(x);
     loads[min_index].push_back(x);
     sums[min_index] += x;
     maxs[min_index] = max(maxs[min_index], x);
-
   }
 
   int gen_mx = -1;
@@ -258,15 +212,11 @@ void two_groups(int cpu_amount, const string& filename) {
   }
 
   groups_divide[0].push_back(gen_mx);
-
 }
 
-void three_groups(int cpu_amount, const string& filename) {
+void three_groups(int cpu_amount, const vector<int>& inputs) {
 
   // divide on three groups
-  cout << "divide on three groups for " << filename << endl;
-
-  ifstream fin(filename);
   int sums[cpu_amount + 1];
   int maxs[cpu_amount + 1];
   int max_cpu_border_right = cpu_amount / 2 + 1;
@@ -278,10 +228,7 @@ void three_groups(int cpu_amount, const string& filename) {
   }
 
   string str;
-  while (true) {
-    getline(fin, str);
-    if (str.empty()) break;
-    int x = strtol(str.c_str(), nullptr, 10);
+  for (int x : inputs) {
 
     int LB = Helper::get_LB_task1(cpu_amount, overall_got);
     int coef1 = (int)(1 * LB);
@@ -327,7 +274,6 @@ void three_groups(int cpu_amount, const string& filename) {
     loads[min_index].push_back(x);
     sums[min_index] += x;
     maxs[min_index] = max(maxs[min_index], x);
-
   }
 
 //  int LB = get_LB(cpu_amount, overall_got);
@@ -361,34 +307,58 @@ void print_ans(const vector<int>& vc, const string& name) {
 
 int main() {
 
+  int limit_int;
   vector<int> pr = {3, 6, 10, 15};
   vector<string> strategies = {"random", "min", "max", "jumps"};
+  vector<string> limits = {"n", "n2"};
 
-  for (const auto& strategy : strategies) {
-    for (auto cr : pr) {
-      int number_amount;
-      string proc_amount = to_string(cr), file;
+  for (const auto& limit : limits) {
+    for (const auto& strategy: strategies) {
 
-      dummy_list.clear();
-      for (int i = 1; i <= 3; i++) greedy_list[i].clear();
-      for (int i = 0; i < 2; i++) groups_divide[i].clear();
+      string foldername = "tests_" + limit + "/" + strategy;
+      string test_file = foldername + "/tests_inputs_" + limit + ".txt";
 
-      for (number_amount = 1; number_amount <= 10; number_amount++) {
-        file = "tests/" + proc_amount + "/" + strategy + "/output" + to_string(number_amount) + ".txt";
-        dummy_distribution(cr, file);
-        greedy_algo1(cr, file);
-        greedy_algo2(cr, file);
-        greedy_algo3(cr, file);
-        two_groups(cr, file);
-        three_groups(cr, file);
+      if (limit == "n") limit_int = 3000;
+      else if (limit == "n2") limit_int = 1000;
+
+      for (auto cr: pr) {
+        ifstream ftest(test_file);
+        string proc_amount = to_string(cr), file;
+
+        dummy_list.clear();
+        for (int i = 1; i <= 3; i++) greedy_list[i].clear();
+        for (int i = 0; i < 2; i++) groups_divide[i].clear();
+
+        for (int amount = 100; amount <= limit_int; amount += 100) {
+
+          vector<int> overall;
+          int read_amount, x;
+          ftest >> read_amount;
+          assert(read_amount == amount);
+          for (int i = 1; i <= amount; i++) {
+            ftest >> x;
+            overall.push_back(x);
+          }
+
+          dummy_distribution(cr, overall);
+          greedy_algo1(cr, overall);
+          greedy_algo2(cr, overall);
+          greedy_algo3(cr, overall);
+          two_groups(cr, overall);
+          three_groups(cr, overall);
+        }
+
+        cout << "limit: " << limit << ", strategy: " << strategy <<
+                ", CPUs: " << cr << endl;
+        print_ans(dummy_list, "D");
+        print_ans(greedy_list[1], "G1");
+        print_ans(greedy_list[2], "G2");
+        print_ans(greedy_list[3], "G3");
+        print_ans(groups_divide[0], "GR1");
+        print_ans(groups_divide[1], "GR2");
+        cout << endl;
+        ftest.close();
       }
-      print_ans(dummy_list, "Dummy");
-      print_ans(greedy_list[1], "G1");
-      print_ans(greedy_list[2], "G2");
-      print_ans(greedy_list[3], "G3");
-      print_ans(groups_divide[0], "Two groups");
-      print_ans(groups_divide[1], "Three groups");
-      cout << endl;
     }
   }
 

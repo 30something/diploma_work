@@ -10,3 +10,5 @@ add_executable(euristic_solve_task1 helper.h euristic_solver_task1.cpp)
 
 add_executable(exact_solve_task2 helper.h exact_solver_task2.cpp)
 add_executable(solve_task2 helper.h solver_task2.cpp)
+
+add_executable(solve_task3 helper.h solver_task3.cpp)

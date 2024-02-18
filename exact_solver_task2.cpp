@@ -69,11 +69,10 @@ void solve(int cpu_amount, int current_pos, double current_oc) {
     sums[cpu_number] = old_sum;
     sizes[cpu_number]--;
   }
-
 }
 
 void solve_test(const Params& params, int amount, int solve_sec,
-                const string& info_file, const string& test_file,
+                ifstream& ftest, ofstream& finfo,
                 vector<double>& lower_bounds_list, vector<double>& sols_list) {
 
   int cpu_amount = params.cpu_amount;
@@ -82,18 +81,17 @@ void solve_test(const Params& params, int amount, int solve_sec,
   int x = params.x;
   int R = params.R;
   int S = params.S;
+  int m2 = R * (k * (S - 1) + x);
 
-  ofstream finfo(info_file);
-  ifstream ftest(test_file);
   vector<int> overall;
+  int read_amount, inp;
 
-  int inp;
+  ftest >> read_amount;
+  assert(read_amount == amount);
   for (int i = 1; i <= amount; i++) {
     ftest >> inp;
     overall.push_back(inp);
   }
-
-  int m2 = R * (k * (S - 1) + x);
 
   for (int i = 0; i < cpu_amount; i++) {
     saved_best_sizes[i] = 0;
@@ -154,39 +152,37 @@ void solve_test(const Params& params, int amount, int solve_sec,
   for (auto f : overall) {
     finfo << f << ' ';
   }
-  finfo << '\n';
+  finfo << endl << endl;
 
   cout.precision(6);
-  cout << "Test in " << test_file << " solved" << endl;
+  cout << "Test with " << amount << " tasks solved" << endl;
   cout << "Lower bound: " << fixed << LB << endl;
   cout << "Solution: " << fixed << saved_best_result << endl << endl;
 
   lower_bounds_list.push_back(LB);
   sols_list.push_back(saved_best_result);
-
 }
 
 void print_lower_bound_and_solves(const vector<double>& lower_bounds_list,
-                                  const vector<double>& sols_list) {
-  cout.precision(6);
-  cout << "LB = [";
+                                  const vector<double>& sols_list,
+                                  ofstream& finfo) {
+  finfo.precision(6);
+  finfo << "LB = [";
   for (int i = 0; i < lower_bounds_list.size(); i++) {
-    cout << fixed << lower_bounds_list[i];
-    if (i < lower_bounds_list.size() - 1) cout << ", ";
+    finfo << fixed << lower_bounds_list[i];
+    if (i < lower_bounds_list.size() - 1) finfo << ", ";
   }
-  cout << "]" << endl;
-  cout << "SOL = [";
+  finfo << "]" << endl;
+  finfo << "SOL = [";
   for (int i = 0; i < sols_list.size(); i++) {
-    cout << fixed << sols_list[i];
-    if (i < sols_list.size() - 1) cout << ", ";
+    finfo << fixed << sols_list[i];
+    if (i < sols_list.size() - 1) finfo << ", ";
   }
-  cout << "]" << endl << endl;
+  finfo << "]" << endl << endl;
 }
 
-void solve_by_strategy(const string& strategy) {
-
-  int solve_sec;
-  int S = 2;
+void solve_by_strategy(const string& limit, const string& strategy) {
+  int solve_sec, S = 2, limit_int;
   vector<int> ms = {10, 30, 60, 90};
   vector<int> m1s = {6, 6, 16, 18};
   vector<int> ks = {4, 4, 5, 8};
@@ -197,35 +193,53 @@ void solve_by_strategy(const string& strategy) {
   vector<double> psis = {1., 1. / 3, 1. / 3, 1. / 4};
   vector<double> B = {2.75, 4.75, 3.94, 7.35};
 
+  vector<double> lower_bounds_list, sols_list;
+  lower_bounds_list.reserve(100);
+  sols_list.reserve(100);
+
+  string foldername = "tests_" + limit + "/" + strategy;
+  string test_file = foldername + "/tests_inputs_" + limit + ".txt";
+  string info_file = foldername + "/tests_outputs_task2_" + limit + ".txt";
+  ofstream finfo(info_file);
+//  ofstream finfo(info_file, ios_base::app);
+
+  if (limit == "n") limit_int = 3000;
+  else if (limit == "n2") limit_int = 1000;
+
   for (int i = 0; i < ms.size(); i++) {
-    int number_amount = 1;
+
+    ifstream ftest(test_file);
+    cout << "Moving to " << limit << " limit and " << strategy <<
+            " strategy with " << ms[i] << " CPUs\n\n";
     string proc_amount = to_string(ms[i]);
-    vector<double> lower_bounds_list;
-    vector<double> sols_list;
+    lower_bounds_list.clear();
+    sols_list.clear();
 
-    for (int elements = 100; elements <= 1000; elements += 100) {
-      if (elements <= 500) solve_sec = 30;
-      else solve_sec = 60;
+    for (int elements = 100; elements <= limit_int; elements += 100) {
+      solve_sec = 10;
       Params params = {ms[i], S, m1s[i], ks[i], Rs[i], ls[i], xs[i], phis[i], psis[i], B[i]};
-
       solve_test(params, elements, solve_sec,
-                 "tests/" + proc_amount + "/" + strategy + "/test" + to_string(number_amount) + ".txt",
-                 "tests/" + proc_amount + "/" + strategy + "/output" + to_string(number_amount) + ".txt",
+                 ftest, finfo,
                  lower_bounds_list, sols_list);
-      number_amount++;
     }
 
-    print_lower_bound_and_solves(lower_bounds_list, sols_list);
+    finfo << "limit: " << limit << ", strategy: " << strategy <<
+             ", CPUs: " << ms[i] << endl;
+    print_lower_bound_and_solves(lower_bounds_list, sols_list, finfo);
+    ftest.close();
   }
-
 }
 
 int main() {
 
-  solve_by_strategy("random");
-  solve_by_strategy("min");
-  solve_by_strategy("max");
-  solve_by_strategy("jumps");
+  vector<string> limits = {"n", "n2"};
+
+  for (const auto& limit : limits) {
+    solve_by_strategy(limit, "random");
+    solve_by_strategy(limit, "min");
+    solve_by_strategy(limit, "max");
+    solve_by_strategy(limit, "jumps");
+  }
 
   return 0;
 }
