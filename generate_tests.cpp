@@ -95,8 +95,11 @@ void generate_test(int amount, int x_coef, int x_plus, Strategy strategy,
 
 int main() {
 
-  vector<string> limits = {"n", "n2"};
-  vector<int> int_limits = {3000, 1000};
+//  vector<string> limits = {"n", "n2"};
+//  vector<int> int_limits = {3000, 1000};
+
+  vector<string> limits = {"n2"};
+  vector<int> int_limits = {1000};
 
   for (int index = 0; index < limits.size(); index++) {
     string test_filename = "tests_inputs_" + limits[index] + ".txt";
@@ -104,6 +107,7 @@ int main() {
     for (int elements = 100; elements <= int_limits[index]; elements += 100) {
       int x_coef = elements;
       if (limits[index] == "n2") x_coef = elements * elements;
+//      int x_coef = 1000000;
       generate_test(elements, x_coef, 1, RANDOM_SHUFFLE,
                     testfolder + "/random", test_filename);
       generate_test(elements, x_coef, 1, PRIORITY_MIN,

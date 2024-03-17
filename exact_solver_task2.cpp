@@ -216,7 +216,7 @@ void solve_by_strategy(const string& limit, const string& strategy) {
     sols_list.clear();
 
     for (int elements = 100; elements <= limit_int; elements += 100) {
-      solve_sec = 10;
+      solve_sec = 30;
       Params params = {ms[i], S, m1s[i], ks[i], Rs[i], ls[i], xs[i], phis[i], psis[i], B[i]};
       solve_test(params, elements, solve_sec,
                  ftest, finfo,

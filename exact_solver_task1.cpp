@@ -59,7 +59,7 @@ void solve(int cpu_amount, int current_pos, int current_oc) {
     old_max = maxs[cpu_number];
 
     new_sum = sums[cpu_number] + x;
-    new_max = max(maxs[cpu_number], x);
+    new_max = max(maxs[cpu_number], x);  // always will return maxs[cpu_number]
     if (new_sum - new_max >= saved_best_result) continue;
 
     sums[cpu_number] = new_sum;
@@ -84,36 +84,53 @@ void solve_test(int cpu_amount, int amount, int solve_sec,
 
   ftest >> read_amount;
   assert(read_amount == amount);
+  elements_amount = amount;
   for (int i = 1; i <= amount; i++) {
     ftest >> x;
     overall.push_back(x);
-  }
-
-  for (int i = 0; i < cpu_amount; i++) {
-    saved_best_sizes[i] = 0;
-    sums[i] = maxs[i] = sizes[i] = 0;
-  }
-
-  // TODO: improve basic distribution
-  int sum = 0, mx = 0;
-  elements_amount = amount;
-  for (int i = 0; i < elements_amount; i++) {
-    working_array[i] = overall[i];
-    sum += overall[i];
-    mx = max(mx, overall[i]);
-    saved_best_sizes[0]++;
-    saved_best_distribution[0][i] = overall[i];
   }
 
   int LB = Helper::get_LB_task1(cpu_amount, overall);
   finfo << "Elements for " << cpu_amount << " CPUs (size = " << overall.size() << "):\n";
   finfo << "Lower bound: " << LB << '\n';
 
-  saved_best_result = sum - mx;
+  for (int i = 0; i < cpu_amount; i++) {
+    saved_best_sizes[i] = 0;
+    sums[i] = maxs[i] = sizes[i] = 0;
+  }
+
+  // solve test in offline
+  sort(overall.begin(), overall.end());
+  reverse(overall.begin(), overall.end());
+
+  // based distribution uses LPT and achieves (4/3 - 1/3m) ratio
+  vector<int> current_sums(amount, 0);
+  vector<int> current_maxs(amount, 0);
+  for (int i = 0; i < amount; i++) {
+    working_array[i] = overall[i];
+    int ind = 0;
+    for (int j = 1; j < cpu_amount; j++) {
+      if (current_sums[j] < current_sums[ind]) ind = j;
+    }
+    current_sums[ind] += overall[i];
+    current_maxs[ind] = max(current_maxs[ind], overall[i]);
+    saved_best_distribution[ind][saved_best_sizes[ind]] = overall[i];
+    saved_best_sizes[ind]++;
+  }
+
+  saved_best_result = 0;
+  for (int i = 0; i < cpu_amount; i++) {
+    saved_best_result = max(saved_best_result, current_sums[i] - current_maxs[i]);
+    // distribution of first m tasks
+    sums[i] = maxs[i] = overall[i];
+    distribution[i][0] = overall[i];
+    sizes[i]++;
+  }
+
   gettimeofday(&time_begin, nullptr);
   time_return = false;
   sec_to_return = solve_sec;
-  solve(cpu_amount, 0, 0);
+  solve(cpu_amount, cpu_amount, 0);
   finfo << "Solution: " << saved_best_result << '\n';
   for (int i = 0; i < cpu_amount; i++) {
     finfo << "Cpu #" << i << ": ";
@@ -146,7 +163,7 @@ void print_lower_bound_and_solves(const vector<int>& lower_bounds_list,
     if (i < lower_bounds_list.size() - 1) finfo << ", ";
   }
   finfo << "]" << endl;
-  finfo << "SOLS = [";
+  finfo << "SOL = [";
   for (int i = 0; i < sols_list.size(); i++) {
     finfo << sols_list[i];
     if (i < sols_list.size() - 1) finfo << ", ";
@@ -155,10 +172,12 @@ void print_lower_bound_and_solves(const vector<int>& lower_bounds_list,
 }
 
 int main() {
-  vector<int> pr = {3, 6, 10, 15};
+//  vector<int> pr = {3, 6, 10, 15, 20, 30};
+  vector<int> pr = {75};
   vector<int> lower_bounds_list, sols_list;
   vector<string> strategies = {"random", "min", "max", "jumps"};
-  vector<string> limits = {"n", "n2"};
+//  vector<string> limits = {"n", "n2"};
+  vector<string> limits = {"n2"};
   int solve_sec, limit_int = 1000;
 
   lower_bounds_list.reserve(100);
@@ -186,7 +205,7 @@ int main() {
         sols_list.clear();
 
         for (int elements = 100; elements <= limit_int; elements += 100) {
-          solve_sec = 10;
+          solve_sec = 30;
           solve_test(cr, elements, solve_sec,
                      ftest, finfo,
                      lower_bounds_list, sols_list);
