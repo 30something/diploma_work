@@ -431,7 +431,7 @@ void print_ans(const vector<int>& vc, const string& name) {
 int main() {
 
   int limit_int;
-  vector<int> pr = {3, 6, 10, 15, 20, 30};
+  vector<int> pr = {3, 6, 10, 15, 20, 30, 40, 50, 60, 75, 90, 100};
   vector<string> strategies = {"random", "min", "max", "jumps"};
   vector<string> limits = {"n2"};
 //  vector<int> pr = {75};
